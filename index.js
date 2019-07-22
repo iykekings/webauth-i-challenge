@@ -7,7 +7,7 @@ server.use(express.json());
 server.get('/', (req, res) => {
   res.status(200).json('Api exposed at /api/users');
 });
-server.use('/api/users', usersRouter);
+server.use('/api', usersRouter);
 
 server.listen(4000, () => {
   console.log('Server running at localhost:3000');
