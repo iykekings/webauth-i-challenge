@@ -33,7 +33,7 @@ router.post('/register', validateUserBody, async (req, res) => {
     user.password = bcrypt.hashSync(req.body.password, salt);
     const createdUser = await createUser(user);
     if (createdUser) {
-      res.status(201).json(createUser);
+      res.status(201).json(createdUser);
     } else {
       res
         .status(404)

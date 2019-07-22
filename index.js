@@ -10,5 +10,5 @@ server.get('/', (req, res) => {
 server.use('/api', usersRouter);
 
 server.listen(4000, () => {
-  console.log('Server running at localhost:3000');
+  console.log('Server running at localhost:4000');
 });
