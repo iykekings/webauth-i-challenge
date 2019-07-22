@@ -1,6 +1,13 @@
 const router = require('express').Router();
-const { validateUserBody, validateUser } = require('./user.middleware');
-const { createUser, getUsers } = require('./user.model');
+const {
+  validateUserBody,
+  validateUser,
+  validateLogin
+} = require('./user.middleware');
+const { createUser, getUsers, getUserByEmail } = require('./user.model');
+const bcrypt = require('bcryptjs');
+
+const salt = bcrypt.genSaltSync(10);
 
 router.get('/users', async (req, res) => {
   try {
@@ -22,7 +29,9 @@ router.get('/users/:id', validateUser, async (req, res) => {
 
 router.post('/register', validateUserBody, async (req, res) => {
   try {
-    const createdUser = await createUser(req.body);
+    let user = req.body;
+    user.password = bcrypt.hashSync(req.body.password, salt);
+    const createdUser = await createUser(user);
     if (createdUser) {
       res.status(201).json(createUser);
     } else {
@@ -32,6 +41,21 @@ router.post('/register', validateUserBody, async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: 'could not create user' });
+  }
+});
+
+router.post('/login', validateLogin, async (req, res) => {
+  try {
+    const loginUser = await getUserByEmail(req.body.email);
+    const password = req.body.password;
+    const isUser = bcrypt.compareSync(password, loginUser.password);
+    if (isUser) {
+      res.status(200).json('Logged in Successfully');
+    } else {
+      res.status(401).json({ message: 'You shall not pass' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'could not login, try again' });
   }
 });
 

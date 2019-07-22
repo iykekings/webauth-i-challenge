@@ -24,8 +24,19 @@ const validateUserBody = (req, res, next) => {
     });
   }
 };
+const validateLogin = (req, res, next) => {
+  const { email, password } = req.body;
+  if (email && password) {
+    next();
+  } else {
+    res.status(400).json({
+      message: 'please provide email and password'
+    });
+  }
+};
 
 module.exports = {
   validateUser,
-  validateUserBody
+  validateUserBody,
+  validateLogin
 };
