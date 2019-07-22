@@ -9,6 +9,11 @@ const getUsers = id =>
         .where({ id })
         .first();
 
+const getUserByEmail = email =>
+  db('users')
+    .where({ email })
+    .first();
+
 const createUser = user =>
   db('users')
     .insert(user)
@@ -16,5 +21,6 @@ const createUser = user =>
 
 module.exports = {
   getUsers,
-  createUser
+  createUser,
+  getUserByEmail
 };
