@@ -50,12 +50,30 @@ router.post('/login', validateLogin, async (req, res) => {
     const password = req.body.password;
     const isUser = bcrypt.compareSync(password, loginUser.password);
     if (isUser) {
-      res.status(200).json('Logged in Successfully');
+      // eslint-disable-next-line require-atomic-updates
+      req.session.user = loginUser;
+      res.status(200).json({
+        message: `Welcome ${loginUser.firstName}!`
+      });
     } else {
-      res.status(401).json({ message: 'You shall not pass' });
+      res.status(401).json({ message: 'Invalid Credentials' });
     }
   } catch (error) {
     res.status(500).json({ message: 'could not login, try again' });
+  }
+});
+
+router.get('/logout', (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.send('you can never leave');
+      } else {
+        res.send('bye, thanks!');
+      }
+    });
+  } else {
+    res.end();
   }
 });
 
