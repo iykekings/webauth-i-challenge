@@ -22,5 +22,6 @@ const createUser = user =>
 module.exports = {
   getUsers,
   createUser,
-  getUserByEmail
+  getUserByEmail,
+  db
 };
