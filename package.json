@@ -24,9 +24,14 @@
   "homepage": "https://github.com/iykekings/webauth-i-challenge#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-session-knex": "^1.4.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "knex": "^0.19.0",
-    "sqlite3": "^4.0.9"
+    "express-session": "^1.16.2",
+    "helmet": "^3.18.0",
+    "knex": "^0.17.0",
+    "sqlite3": "^4.0.8"
   },
   "devDependencies": {
     "eslint": "^6.1.0"
