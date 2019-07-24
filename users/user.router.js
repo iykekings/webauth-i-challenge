@@ -2,14 +2,15 @@ const router = require('express').Router();
 const {
   validateUserBody,
   validateUser,
-  validateLogin
+  validateLogin,
+  authenticateUser
 } = require('./user.middleware');
 const { createUser, getUsers, getUserByEmail } = require('./user.model');
 const bcrypt = require('bcryptjs');
 
 const salt = bcrypt.genSaltSync(10);
 
-router.get('/users', async (req, res) => {
+router.get('/users', authenticateUser, async (req, res) => {
   try {
     const users = await getUsers();
     res.status(200).json(users);
