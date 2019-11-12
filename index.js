@@ -8,6 +8,7 @@ const usersRouter = require('./users/user.router');
 const { db } = require('./users/user.model');
 
 const server = express();
+const PORT = process.env.PORT || 4000;
 
 server.use(helmet());
 server.use(cors());
@@ -40,6 +41,6 @@ server.get('/', (req, res) => {
 });
 server.use('/api', usersRouter);
 
-server.listen(4000, () => {
+server.listen(PORT, () => {
   console.log('Server running at localhost:4000');
 });
