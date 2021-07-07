@@ -1,0 +1,40 @@
+{
+  "name": "webauth-i-challenge",
+  "version": "1.0.0",
+  "description": "Web API with authentication",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iykekings/webauth-i-challenge.git"
+  },
+  "keywords": [
+    "Auth",
+    "API",
+    "Express",
+    "sqlite3"
+  ],
+  "author": "Ikechukwu Eze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iykekings/webauth-i-challenge/issues"
+  },
+  "homepage": "https://github.com/iykekings/webauth-i-challenge#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-session-knex": "^1.4.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "helmet": "^3.18.0",
+    "knex": "^0.17.0",
+    "sqlite3": "^4.0.8"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0"
+  }
+}
